@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://c70jj3o0scro2"]
+
+[node name="Hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 80.0
+
+[node name="Life" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "Lives: 3"
+
+[node name="Points" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "Pts. 100"
