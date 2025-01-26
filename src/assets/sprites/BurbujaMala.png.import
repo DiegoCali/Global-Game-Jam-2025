@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvuwk3raxopkv"
-path="res://.godot/imported/BurbujaMala.jpg-993a59a5d5df311078c4c92b8be3f85e.ctex"
+uid="uid://c6q25fe7n3knw"
+path="res://.godot/imported/BurbujaMala.png-3b7f275ade8564f017efb480dff6c772.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/BurbujaMala.jpg"
-dest_files=["res://.godot/imported/BurbujaMala.jpg-993a59a5d5df311078c4c92b8be3f85e.ctex"]
+source_file="res://assets/sprites/BurbujaMala.png"
+dest_files=["res://.godot/imported/BurbujaMala.png-3b7f275ade8564f017efb480dff6c772.ctex"]
 
 [params]
 
