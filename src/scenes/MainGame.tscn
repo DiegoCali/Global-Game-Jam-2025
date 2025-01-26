@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1ttnjkjvjso1"]
+
+[ext_resource type="Script" path="res://scenes/main_game.gd" id="1_w6dlh"]
+[ext_resource type="PackedScene" uid="uid://o7pbcpqry666" path="res://scenes/start_menu.tscn" id="2_sqkea"]
+[ext_resource type="PackedScene" uid="uid://13ocb1xxbxcl" path="res://scenes/Bubble.tscn" id="2_woinn"]
+[ext_resource type="PackedScene" uid="uid://c70jj3o0scro2" path="res://scenes/hud.tscn" id="4_4uhgl"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w6dlh")
+
+[node name="StartMenu" parent="." instance=ExtResource("2_sqkea")]
+layout_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(160, 244)
+
+[node name="GameTimer" type="Timer" parent="."]
+
+[node name="Hud" parent="." instance=ExtResource("4_4uhgl")]
+layout_mode = 1
+
+[node name="Bubble" parent="." instance=ExtResource("2_woinn")]
+
+[connection signal="game_start" from="StartMenu" to="." method="start_game"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
