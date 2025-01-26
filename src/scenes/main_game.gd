@@ -80,6 +80,16 @@ func add_point_to_hud():
 func gameover() -> void:
 	$GameTimer.stop()
 	$InGameMusic.stop()
+	$GameOver.play()
+	
+	var timer = Timer.new()
+	timer.wait_time = 3.0
+	timer.one_shot = true
+	add_child(timer)
+	timer.start()
+	
+	await timer.timeout
+	
 	$MenuMusic.play()
 	$StartMenu.show()
 	
