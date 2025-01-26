@@ -260,6 +260,7 @@ radius = 51.0
 script = ExtResource("1_egawn")
 vx = 25
 vy = 25
+metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.2, 0.2)

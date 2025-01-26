@@ -6,6 +6,7 @@ var score
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var starmenu = $StartMenu
+	$MenuSong.play()
 	starmenu.show()
 	$Hud.hide()
 
@@ -17,9 +18,12 @@ func _process(delta: float) -> void:
 func start_game():
 	$Hud.show()
 	$GameTimer.start()
+	$MenuSong.stop()
+	$InGame.play()
+	
 func _on_game_timer_timeout() -> void:
 	var bubble = bubble_scene.instantiate()
-	bubble.connect("popped", add_point_to_hud())
+	#bubble.connect("popped", add_point_to_hud())
 	var bubble_spawn_location = $BubblePath/FollowBubblePath
 	bubble_spawn_location.progress_ratio = randf()
 	
