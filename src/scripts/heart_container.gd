@@ -20,13 +20,9 @@ func reduce_heart():
 		if $HeartContainer.get_child_count() > 0:
 			$HeartContainer.get_child($HeartContainer.get_child_count() - 1).queue_free()
 			
-func clear_children():
-	for child in $HeartContainer.get_children():
-		child.queue_free()
 
 func reset():
 	lives = 3
-	$HeartContainer.clear_children()
 	for i in range(lives):
 		var NewHeart = Label.new()
 		NewHeart.set_text("<3")

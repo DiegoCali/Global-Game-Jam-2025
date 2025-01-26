@@ -2,7 +2,6 @@ extends Control
 
 @export var bubbles_scene : PackedScene
 var score
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var starmenu = $StartMenu
@@ -78,18 +77,14 @@ func add_point_to_hud():
 	$Hud/HBoxContainer/PointsContainer.add_point()
 	
 func gameover() -> void:
+	$Hud/HBoxContainer/HeartContainer.reset()
 	$GameTimer.stop()
 	$InGameMusic.stop()
 	$GameOver.play()
-	
-	var timer = Timer.new()
-	timer.wait_time = 3.0
-	timer.one_shot = true
-	add_child(timer)
-	timer.start()
-	
-	await timer.timeout
-	
+
+func _on_game_over_finished() -> void:
 	$MenuMusic.play()
+	$StartMenu/VBoxContainer/Label.text = "Game Over"
+	$StartMenu/VBoxContainer/Button.text = "restart"
 	$StartMenu.show()
 	

@@ -25,6 +25,8 @@ func _process(delta: float) -> void:
 func _on_area2d_input_event(viewport, event, shape_idx):
 	# Detecta si se hace clic en la burbuja
 	if event is InputEventMouseButton and event.pressed:
+		popped.emit(IamBad)
+		$Area2D.queue_free()
 		if not IamBad:
 			$AnimatedSprite2D.play("pop_good")
 			$AnimatedSprite2D.set_scale(Vector2(0.3, 0.3))
@@ -34,5 +36,4 @@ func _on_area2d_input_event(viewport, event, shape_idx):
 func _on_animated_sprite_2d_animation_finished() -> void:
 	# Una vez que se completa la animación de "pop", elimina la burbuja
 	print("Goodbye")
-	popped.emit(IamBad)
 	queue_free()
