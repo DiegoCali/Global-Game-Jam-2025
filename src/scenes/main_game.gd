@@ -60,10 +60,17 @@ func _on_game_timer_timeout() -> void:
 
 	# Configurar la velocidad de la burbuja
 	bubble.velocity = direction * randf_range(50, 100) # Ajusta la velocidad según prefieras
+	
+	bubble.connect("popped", Callable(self,"_on_bubble_popped"))
 
 	# Añadir la burbuja al árbol de nodos
 	add_child(bubble)
-
+	
+func _on_bubble_popped(is_bad: bool) -> void:
+	if not is_bad:
+		add_point_to_hud()
+	else:
+		print("Burbuja mala explotada")
 
 func add_point_to_hud():
 	$Hud/HBoxContainer/PointsContainer.add_point()
