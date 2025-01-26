@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://be6twquprhgua"]
+
+[ext_resource type="Script" path="res://scripts/points_container.gd" id="1_yb1ku"]
+
+[node name="PointsContainer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -160.0
+offset_bottom = -450.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yb1ku")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Pts" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Pts:"
+
+[node name="Number" type="Label" parent="HBoxContainer"]
+layout_mode = 2

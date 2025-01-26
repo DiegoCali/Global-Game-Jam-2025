@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://c70jj3o0scro2"]
+
+[ext_resource type="PackedScene" uid="uid://b2ye4fcwjtasx" path="res://scenes/heart_container.tscn" id="1_et4rh"]
+[ext_resource type="PackedScene" uid="uid://be6twquprhgua" path="res://scenes/points_container.tscn" id="2_cf7ph"]
+
+[node name="Hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 40.0
+
+[node name="HeartContainer" parent="HBoxContainer" instance=ExtResource("1_et4rh")]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+
+[node name="PointsContainer" parent="HBoxContainer" instance=ExtResource("2_cf7ph")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
