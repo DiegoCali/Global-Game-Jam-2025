@@ -19,6 +19,7 @@ func start_game():
 	$GameTimer.start()
 func _on_game_timer_timeout() -> void:
 	var bubble = bubble_scene.instantiate()
+	bubble.connect("popped", add_point_to_hud())
 	var bubble_spawn_location = $BubblePath/FollowBubblePath
 	bubble_spawn_location.progress_ratio = randf()
 	
@@ -34,3 +35,6 @@ func _on_game_timer_timeout() -> void:
 
 	# Spawn the mob by adding it to the Main scene.
 	add_child(bubble)
+
+func add_point_to_hud():
+	$Hud/HBoxContainer/PointsContainer.add_point()
