@@ -15,7 +15,15 @@ func _process(_delta: float) -> void:
 		game_over.emit()
 
 func reduce_heart():
-	lives = lives - 1
+	if lives > 0:
+		lives = lives - 1
+		if $HeartContainer.get_child_count() > 0:
+			$HeartContainer.get_child($HeartContainer.get_child_count() - 1).queue_free()
+			
 
 func reset():
 	lives = 3
+	for i in range(lives):
+		var NewHeart = Label.new()
+		NewHeart.set_text("<3")
+		$HeartContainer.add_child(NewHeart)

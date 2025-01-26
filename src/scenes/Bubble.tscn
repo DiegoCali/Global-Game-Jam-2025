@@ -258,8 +258,6 @@ radius = 51.0
 
 [node name="Bubble" type="Node2D"]
 script = ExtResource("1_egawn")
-vx = 25
-vy = 25
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
