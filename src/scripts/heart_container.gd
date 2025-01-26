@@ -2,6 +2,7 @@ extends Control
 
 signal game_over
 var lives = 3
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for i in range(lives):

@@ -2,7 +2,7 @@ extends Control
 
 @export var bubble_scene : PackedScene
 var score
-
+var in_game_music = null
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var starmenu = $StartMenu
