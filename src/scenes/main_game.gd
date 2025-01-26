@@ -1,5 +1,6 @@
 extends Control
 
+@export var bubbles_scene : PackedScene
 var score
 
 # Called when the node enters the scene tree for the first time.
@@ -21,7 +22,7 @@ func start_game():
 	$InGameMusic.play()
 
 func _on_game_timer_timeout() -> void:
-	var bubble = $Bubble.instance
+	var bubble = bubbles_scene.instantiate()
 
 	# Obtener los límites de la cámara
 	var camera = $Camera2D
