@@ -1,19 +1,57 @@
-[gd_scene load_steps=4 format=3 uid="uid://13ocb1xxbxcl"]
+[gd_scene load_steps=9 format=3 uid="uid://13ocb1xxbxcl"]
 
 [ext_resource type="Script" path="res://scripts/bubble_movement.gd" id="1_egawn"]
 [ext_resource type="Texture2D" uid="uid://dte6m6b0f1wlh" path="res://assets/sprites/BurbujaBuena.png" id="2_g5y3x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6r1y"]
+atlas = ExtResource("2_g5y3x")
+region = Rect2(0, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_baw7x"]
+atlas = ExtResource("2_g5y3x")
+region = Rect2(512, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2kf7"]
+atlas = ExtResource("2_g5y3x")
+region = Rect2(0, 512, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k67tk"]
+atlas = ExtResource("2_g5y3x")
+region = Rect2(512, 512, 512, 512)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oxqc0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6r1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_baw7x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2kf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k67tk")
+}],
+"loop": true,
+"name": &"good_static",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wsiao"]
 radius = 51.0
 
 [node name="Bubble" type="Node2D"]
 script = ExtResource("1_egawn")
+vx = 25
+vy = 25
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_g5y3x")
-hframes = 2
-vframes = 2
+sprite_frames = SubResource("SpriteFrames_oxqc0")
+animation = &"good_static"
+frame_progress = 0.786544
 
 [node name="Area2D" type="Area2D" parent="."]
 
