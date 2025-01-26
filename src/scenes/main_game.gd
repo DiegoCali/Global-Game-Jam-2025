@@ -7,6 +7,7 @@ func _ready() -> void:
 	var starmenu = $StartMenu
 	starmenu.show()
 	$Hud.hide()
+	$MenuMusic.play()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -16,7 +17,8 @@ func _process(delta: float) -> void:
 func start_game():
 	$Hud.show()
 	$GameTimer.start()
-
+	$MenuMusic.stop()
+	$InGameMusic.play()
 
 func _on_game_timer_timeout() -> void:
 	var bubble = $Bubble.instance
