@@ -35,3 +35,4 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	print("Goodbye")
 	popped.emit(IamBad)
 	queue_free()
+	
