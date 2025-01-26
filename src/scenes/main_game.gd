@@ -9,6 +9,7 @@ func _ready() -> void:
 	starmenu.show()
 	$Hud.hide()
 	$MenuMusic.play()
+	$Hud/HBoxContainer/HeartContainer.connect("game_over", Callable(self,"gameover"))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -71,6 +72,14 @@ func _on_bubble_popped(is_bad: bool) -> void:
 		add_point_to_hud()
 	else:
 		print("Burbuja mala explotada")
+		$Hud/HBoxContainer/HeartContainer.reduce_heart() 
 
 func add_point_to_hud():
 	$Hud/HBoxContainer/PointsContainer.add_point()
+	
+func gameover() -> void:
+	$GameTimer.stop()
+	$InGameMusic.stop()
+	$MenuMusic.play()
+	$StartMenu.show()
+	
