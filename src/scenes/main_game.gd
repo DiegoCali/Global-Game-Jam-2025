@@ -1,6 +1,5 @@
 extends Control
 
-@export var bubble_scene : PackedScene
 var score
 
 # Called when the node enters the scene tree for the first time.
@@ -17,24 +16,51 @@ func _process(delta: float) -> void:
 func start_game():
 	$Hud.show()
 	$GameTimer.start()
+
+
 func _on_game_timer_timeout() -> void:
-	var bubble = bubble_scene.instantiate()
-	bubble.connect("popped", add_point_to_hud())
-	var bubble_spawn_location = $BubblePath/FollowBubblePath
-	bubble_spawn_location.progress_ratio = randf()
-	
-	# Set the mob's direction perpendicular to the path direction.
-	var direction = bubble_spawn_location.rotation + PI / 2
+	var bubble = $Bubble.instance
 
-	# Set the mob's position to a random location.
-	bubble.position = bubble_spawn_location.position
+	# Obtener los límites de la cámara
+	var camera = $Camera2D
+	var camera_rect = Rect2(
+		camera.global_position - camera.zoom * camera.get_viewport_rect().size / 2,
+		camera.zoom * camera.get_viewport_rect().size
+	)
 
-	# Add some randomness to the direction.
-	direction += randf_range(-PI / 4, PI / 4)
-	bubble.rotation = direction
+	# Generar una posición inicial fuera de los límites de la cámara
+	var spawn_position = Vector2()
+	var side = randi() % 4 # 0: izquierda, 1: derecha, 2: arriba, 3: abajo
 
-	# Spawn the mob by adding it to the Main scene.
+	match side:
+		0: # Izquierda
+			spawn_position.x = camera_rect.position.x - 100
+			spawn_position.y = randf_range(camera_rect.position.y, camera_rect.position.y + camera_rect.size.y)
+		1: # Derecha
+			spawn_position.x = camera_rect.position.x + camera_rect.size.x + 100
+			spawn_position.y = randf_range(camera_rect.position.y, camera_rect.position.y + camera_rect.size.y)
+		2: # Arriba
+			spawn_position.x = randf_range(camera_rect.position.x, camera_rect.position.x + camera_rect.size.x)
+			spawn_position.y = camera_rect.position.y - 100
+		3: # Abajo
+			spawn_position.x = randf_range(camera_rect.position.x, camera_rect.position.x + camera_rect.size.x)
+			spawn_position.y = camera_rect.position.y + camera_rect.size.y + 100
+
+	# Asignar posición inicial
+	bubble.position = spawn_position
+
+	# Calcular la dirección hacia el centro de la cámara
+	var direction = (camera.global_position - spawn_position).normalized()
+
+	# Agregar algo de aleatoriedad a la dirección
+	direction = direction.rotated(randf_range(-PI / 8, PI / 8))
+
+	# Configurar la velocidad de la burbuja
+	bubble.velocity = direction * randf_range(50, 100) # Ajusta la velocidad según prefieras
+
+	# Añadir la burbuja al árbol de nodos
 	add_child(bubble)
+
 
 func add_point_to_hud():
 	$Hud/HBoxContainer/PointsContainer.add_point()
