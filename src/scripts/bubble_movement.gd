@@ -5,6 +5,7 @@ extends Node2D
 var velocity = Vector2(0,0)
 var rng = RandomNumberGenerator.new()
 var IamBad = false
+signal popped
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	velocity = Vector2(vx, vy)
@@ -32,4 +33,5 @@ func _on_area2d_input_event(viewport, event, shape_idx):
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	print("Goodbye")
+	popped.emit(IamBad)
 	queue_free()
